@@ -26,28 +26,30 @@ app.use(express.static("client"));
 app.use("/oapi", loginRoute);
 app.use("/api", protectRoute);
 
-const publicVapidKey = process.env.PUBLIC_VAPID_KEY;
-const privateVapidKey = process.env.PRIVATE_VAPID_KEY;
+// const publicVapidKey = process.env.PUBLIC_VAPID_KEY;
+// const privateVapidKey = process.env.PRIVATE_VAPID_KEY;
 
-webpush.setVapidDetails(
-  "mailto:teste@test.com",
-  publicVapidKey,
-  privateVapidKey
-);
+// webpush.setVapidDetails(
+//   "mailto:teste@test.com",
+//   publicVapidKey,
+//   privateVapidKey
+// );
 
-app.post("/subscribe", (req, res) => {
-  const subscription = req.body;
+// app.post("/subscribe", (req, res) => {
+//   const subscription = req.body;
 
-  // console.log(req);
+//   console.log(subscription);
 
-  res.status(201).json({});
+//   // console.log(req);
 
-  const payload = JSON.stringify({ title: "Push Test" });
+//   res.status(201).json({});
 
-  webpush
-    .sendNotification(subscription, payload)
-    .catch(err => console.log("sendNotification" + err));
-});
+//   const payload = JSON.stringify({ title: "Push Test" });
+
+//   webpush
+//     .sendNotification(subscription, payload)
+//     .catch(err => console.log("sendNotification" + err));
+// });
 
 databaseHelper.isDatabaseConnected().then(() => {
   const { PORT } = process.env;

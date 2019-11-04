@@ -5,6 +5,7 @@ const typeAccount = require("./general/user/typeAccount");
 const user = require("./general/user");
 
 const company = require("./general/company");
+const subscribe = require("./general/subscribe");
 
 // const accessories = require('./estoque/product/accessories')
 // const car = require('./estoque/technician/car')
@@ -41,7 +42,8 @@ module.exports = [
   typeAccount,
   user,
 
-  company
+  company,
+  subscribe
 
   // accessories,
   // car,

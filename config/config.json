@@ -1,19 +1,19 @@
 {
   "development": {
-    "username": "idztxixjuqnmuj",
-    "password": "9a530ef021b94c19ab9bfbb95c446090d6a71f0d18e82ba01e723b0fb208d625",
-    "database": "database_development",
-    "host": "127.0.0.1",
-    "dialect": "postgres",
-    "operatorsAliases": false
+    "username": "postgres",
+    "password": "estoque",
+    "database": "estoque",
+    "host": "localhost",
+    "port": 5402,
+    "dialect": "postgres"
   },
   "test": {
-    "username": "idztxixjuqnmuj",
-    "password": "9a530ef021b94c19ab9bfbb95c446090d6a71f0d18e82ba01e723b0fb208d625",
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "dialect": "postgres",
-    "operatorsAliases": false
+    "username": "postgres",
+    "password": "estoque",
+    "database": "estoque",
+    "host": "localhost",
+    "port": 5402,
+    "dialect": "postgres"
   },
   "production": {
     "username": "idztxixjuqnmuj",

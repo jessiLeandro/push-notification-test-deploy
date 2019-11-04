@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "start": "node ./src/server.js",
-    "start:dev": "nodemon ./src/server.js"
+    "start:dev": "nodemon ./src/server.js",
+    "test": "jest --forceExit --detectOpenHandles"
   },
   "dependencies": {
     "@fnando/cnpj": "^0.1.1",
