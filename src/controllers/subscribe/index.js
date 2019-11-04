@@ -8,6 +8,24 @@ const subscribeDomain = new SubscribeDomain();
 
 const add = async (req, res, next) => {
   const subscription = req.body;
+
+  const publicVapidKey = process.env.PUBLIC_VAPID_KEY;
+  const privateVapidKey = process.env.PRIVATE_VAPID_KEY;
+
+  webpush.setVapidDetails(
+    "mailto:teste@test.com",
+    publicVapidKey,
+    privateVapidKey
+  );
+
+  res.status(201).json({});
+
+  const payload = JSON.stringify({ title: "Push Test" });
+
+  webpush
+    .sendNotification(subscription, payload)
+    .catch(err => console.log("sendNotification" + err));
+
   const transaction = await database.transaction();
   try {
     const subscribe = await subscribeDomain.add(subscription, { transaction });
@@ -18,24 +36,22 @@ const add = async (req, res, next) => {
     await transaction.rollback();
     next(error);
   }
-  const publicVapidKey = process.env.PUBLIC_VAPID_KEY;
-  const privateVapidKey = process.env.PRIVATE_VAPID_KEY;
+  // const publicVapidKey = process.env.PUBLIC_VAPID_KEY;
+  // const privateVapidKey = process.env.PRIVATE_VAPID_KEY;
 
-  webpush.setVapidDetails(
-    "mailto:teste@test.com",
-    publicVapidKey,
-    privateVapidKey
-  );
+  // webpush.setVapidDetails(
+  //   "mailto:teste@test.com",
+  //   publicVapidKey,
+  //   privateVapidKey
+  // );
 
-  // console.log(subscription);
+  // res.status(201).json({});
 
-  res.status(201).json({});
+  // const payload = JSON.stringify({ title: "Push Test" });
 
-  const payload = JSON.stringify({ title: "Push Test" });
-
-  webpush
-    .sendNotification(subscription, payload)
-    .catch(err => console.log("sendNotification" + err));
+  // webpush
+  //   .sendNotification(subscription, payload)
+  //   .catch(err => console.log("sendNotification" + err));
 };
 
 module.exports = {

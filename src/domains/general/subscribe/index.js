@@ -13,6 +13,8 @@ module.exports = class SubscribeDomain {
 
     const subscribe = R.omit(["id"], bodyData);
 
+    console.log(subscribe);
+
     const subscribeNotHasProp = prop => R.not(R.has(prop, subscribe));
 
     const field = {
