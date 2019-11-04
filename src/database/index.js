@@ -3,8 +3,8 @@ const Sequelize = require("sequelize");
 
 let sequelize = null;
 
-if (process.env.DATABASE_URL) {
-  sequelize = new Sequelize(process.env.DATABASE_URL, {
+if (process.env.DATABASE_URL_1) {
+  sequelize = new Sequelize(process.env.DATABASE_URL_1, {
     dialect: "postgres",
     define: {
       freezeTableName: true
@@ -17,7 +17,7 @@ if (process.env.DATABASE_URL) {
       modelInstance.associate && modelInstance.associate(sequelize.models)
   );
 
-  sequelize.sync();
+  sequelize.sync({ force: true });
 } else {
   sequelize = new Sequelize({
     host: process.env.DB_HOST || "localhost",
