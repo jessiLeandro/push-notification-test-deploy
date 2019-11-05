@@ -13,9 +13,14 @@ async function send() {
 
   console.log(register);
 
+  console.log(Notification.permission);
+
   console.log("Service Worker Registered...");
 
   console.log("Registering Push...");
+
+  if (Notification.permission == "denied") return;
+
   const subscription = await register.pushManager.subscribe({
     userVisibleOnly: true,
     applicationServerKey: urlBase64ToUint8Array(publicVapidKey)
@@ -24,8 +29,6 @@ async function send() {
   console.log("Push Registered...");
 
   console.log("Send Push...");
-
-  // console.log(JSON.stringify(subscription));
 
   await fetch("/api/subscribe", {
     method: "POST",

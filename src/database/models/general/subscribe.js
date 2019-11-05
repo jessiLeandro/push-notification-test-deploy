@@ -19,12 +19,14 @@ module.exports = sequelize => {
 
     p256dh: {
       type: Sequelize.STRING,
-      allowNull: false
+      allowNull: false,
+      unique: true
     },
 
     auth: {
       type: Sequelize.STRING,
-      allowNull: false
+      allowNull: false,
+      unique: true
     }
   });
 

@@ -4,7 +4,13 @@ self.addEventListener("install", e => {
   e.waitUntil(
     caches.open(cacheName).then(cache => {
       return cache
-        .addAll([`/`, `/index.html`, `/logo192.png`, `/logo512.png`])
+        .addAll([
+          `/`,
+          `/index.html`,
+          `/favicon.ico`,
+          `/logo192.png`,
+          `/logo512.png`
+        ])
         .then(() => self.skipWaiting());
     })
   );
@@ -32,6 +38,7 @@ self.addEventListener("push", e => {
   console.log("Push Recieved...");
   self.registration.showNotification(data.title, {
     body: "Notified by Traversy Media!",
-    icon: "kitten.png"
+    icon: "kitten.png",
+    vibrate: [100, 50, 100]
   });
 });

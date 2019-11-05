@@ -48,6 +48,15 @@ module.exports = class SubscribeDomain {
         field.p256dh = true;
         message.p256dh = "Informe o p256dh.";
       } else {
+        const userRegistered = await Subscribe.findOne({
+          where: { p256dh: subscribe.keys.p256dh },
+          transaction
+        });
+
+        if (userRegistered) {
+          return userRegistered;
+        }
+
         subscribe.p256dh = subscribe.keys.p256dh;
       }
 
@@ -56,6 +65,15 @@ module.exports = class SubscribeDomain {
         field.auth = true;
         message.auth = "Informe a auth.";
       } else {
+        const userRegistered = await Subscribe.findOne({
+          where: { auth: subscribe.keys.auth },
+          transaction
+        });
+
+        if (userRegistered) {
+          return userRegistered;
+        }
+
         subscribe.auth = subscribe.keys.auth;
       }
     }
@@ -67,5 +85,28 @@ module.exports = class SubscribeDomain {
     const subscribeCreated = Subscribe.create(subscribe, { transaction });
 
     return subscribeCreated;
+  }
+
+  async getAll(bodyData, options = {}) {
+    const { transaction = null } = options;
+
+    const subscribes = await Subscribe.findAll({ transaction });
+
+    // console.log(JSON.parse(JSON.stringify(subscribes)));
+
+    const response = subscribes.map(item => {
+      return {
+        endpoint: item.endpoint,
+        expirationTime: item.expirationTime,
+        keys: {
+          p256dh: item.p256dh,
+          auth: item.auth
+        }
+      };
+    });
+
+    console.log(response);
+
+    return response;
   }
 };
