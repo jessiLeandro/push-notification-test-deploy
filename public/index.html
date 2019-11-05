@@ -4,19 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>HEROKU EXPRESS</title>
+    <link rel="manifest" href="manifest.json" />
+    <title>Push Notification Using Node</title>
   </head>
   <body>
-    <h1>HEROKU EXPRESS</h1>
-    <div id="output"></div>
-    <script>
-      fetch("/")
-        .then(function(response) {
-          return response.json();
-        })
-        .then(function(response) {
-          document.getElementById("output").textContent = "test" + response;
-        });
-    </script>
+    <h1>Push Notification Using Node</h1>
+
+    <script src="client.js"></script>
   </body>
 </html>
